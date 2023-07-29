@@ -2,17 +2,20 @@ const char webpageCode[] =
 R"=====(
 <!DOCTYPE html>
 <html>
+<!DOCTYPE html>
+<html>
 <head>
     <style>
         .command-area {
             display: flex;
+            width: 100%;
             flex-direction: column;
             margin: 0 auto;
             align-items: center;
         }
         .btn
         {   display: flex;
-            width: 80px;
+            width: 20%;
             height: 40px;
             color: aliceblue;
             background: rgb(40, 75, 216);
@@ -31,12 +34,10 @@ R"=====(
         <h1>CuGo V3 control</h1>
         <button class="btn" onclick="turnOn()">ON</button>
         <button class="btn" onclick="turnOff()">OFF</button>
-        <button class="btn" onclick="goForward()">Forward</button>
-        <button class="btn" onclick="goBackward()">Backward</button>
     </div>
     <script>
         const url = window.location.host
-        const turnOn = () => {
+        function turnOn() {
 
             return fetch(`http://${url}/on`, {
                 method: "GET"
@@ -49,35 +50,9 @@ R"=====(
                 console.error(error)
             )
         }
-        const turnOff = () => {
+        function turnOff() {
 
             return fetch(`http://${url}/off`, {
-                method: "GET"
-            })
-            .then( response => {
-                data = response.json()
-                console.log(data)
-            })
-            .catch(error => 
-                console.error(error)
-            )
-        }
-        const goForward = () => {
-
-            return fetch(`http://${url}/forward`, {
-                method: "GET"
-            })
-            .then( response => {
-                data = response.json()
-                console.log(data)
-            })
-            .catch(error => 
-                console.error(error)
-            )
-        }
-        const goBackward = () => {
-
-            return fetch(`http://${url}/backward`, {
                 method: "GET"
             })
             .then( response => {
