@@ -4,6 +4,7 @@
 // Define Slave I2C Address
 #define SLAVE_ADDR 9
 
+const byte led_pin = 12;
 char receivedChar;
 
 void setup() {
@@ -13,6 +14,8 @@ void setup() {
   
   // Function to run when data received from master
   Wire.onReceive(receiveEvent);
+
+  pinMode(led_pin, OUTPUT);
   
   // Setup Serial Monitor 
   Serial.begin(9600);
@@ -32,7 +35,7 @@ void receiveEvent() {
   while ( Wire.available() > 0) {
     
     byte msg = Wire.read();
-    receivedChar = (str)msg;
+    receivedChar = msg;
     
     switch (receivedChar) {
       case '0':
